@@ -23,7 +23,6 @@ export class CheckRoleGuard implements CanActivate {
     if (!roles) {
       return true;
     }
-
     if (!roles.includes(request.role)) {
       throw new NotAcceptableException(
         "User don't have permission to this endpoint",

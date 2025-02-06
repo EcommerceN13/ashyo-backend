@@ -101,7 +101,7 @@ import { APP_GUARD } from '@nestjs/core';
               Address,
               Color
             ] as ModelCtor[],
-            // sync: { force: true },
+            //sync: { force: true },
             synchronize: true,
             logging: console.log,
             autoLoadModels: true,
@@ -139,15 +139,15 @@ import { APP_GUARD } from '@nestjs/core';
     TelegramModule,
   ],
   controllers: [],
-  // providers: [
-  //   {
-  //     useClass: CheckAuthGuard,
-  //     provide: APP_GUARD,
-  //   },
-  //   {
-  //     useClass: CheckRoleGuard,
-  //     provide: APP_GUARD,
-  //   },
-  // ],
+   providers: [
+     {
+       useClass: CheckAuthGuard,
+       provide: APP_GUARD,
+     },
+     {
+       useClass: CheckRoleGuard,
+       provide: APP_GUARD,
+     },
+   ],
 })
 export class AppModule { }

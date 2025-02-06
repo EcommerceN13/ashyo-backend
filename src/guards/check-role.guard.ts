@@ -20,11 +20,11 @@ export class CheckRoleGuard implements CanActivate {
     const request = context.switchToHttp().getRequest<RequestInterface>();
     const roles = this.reflector.get(Roles, context.getHandler());
 
-    if (request.role == UserRoles.user && !roles) {
+    if (!roles) {
       return true;
     }
 
-    if (!roles || !roles.includes(request.role)) {
+    if (!roles.includes(request.role)) {
       throw new NotAcceptableException(
         "User don't have permission to this endpoint",
       );

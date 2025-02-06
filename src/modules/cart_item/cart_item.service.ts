@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CartItem } from './models';
 import { CreateCartItemDto } from './dto';
@@ -12,9 +12,22 @@ import { User } from '../user';
 export class CartItemService {
   constructor(@InjectModel(CartItem) private readonly cartItemModel: typeof CartItem) {}
 
-  async create(createCartItemDto: CreateCartItemDto): Promise<CartItem> {
+  async create(createCartItemDto: CreateCartItemDto): Promise<CartItem | string> {
+    const { user_id, product_id } = createCartItemDto;
+  
+    // Avval mavjudligini tekshiramiz
+    const existingCartItem = await this.cartItemModel.findOne({
+      where: { user_id, product_id },
+    });
+  
+    if (existingCartItem) {
+      throw new BadRequestException('Bu mahsulot allaqachon savatga qo‘shilgan');
+    }
+  
+    // Agar mavjud bo'lmasa yangi cartItem yaratamiz
     return this.cartItemModel.create(createCartItemDto as Attributes<CartItem>);
   }
+  
 
   async findAll(): Promise<CartItem[]> {
     return this.cartItemModel.findAll(

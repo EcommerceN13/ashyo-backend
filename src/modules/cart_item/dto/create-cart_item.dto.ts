@@ -31,7 +31,7 @@ export class CreateCartItemDto implements Partial<Attributes<CartItem>> {
     description: 'The quantity of the product in the cart',
     example: 2,
     minimum: 1,
-    required: true,
+    required: false,
     type: Number,
   })
   @IsNotEmpty()
@@ -41,7 +41,7 @@ export class CreateCartItemDto implements Partial<Attributes<CartItem>> {
   @ApiProperty({
     description: 'The price of the product',
     example: 29.99,
-    required: true,
+    required: false,
     type: Number,
   })
   @IsNotEmpty()

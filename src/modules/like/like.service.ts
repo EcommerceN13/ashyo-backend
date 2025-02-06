@@ -42,6 +42,14 @@ export class LikeService {
     async getLikedProducts(userId: number) {
         return this.productService.findLikedByUser(userId)
     }
+
+    async getLikedProductsIdsArray(userId: number) {
+        const array = await this.productService.findLikedByUser(userId);
+        const productIds = array.map(product => product?.dataValues?.id); 
+        console.log(productIds);
+        return productIds;
+    }
+    
     
     async getSingleLike(id: number): Promise<Like> {
         return this.likeModel.findOne({

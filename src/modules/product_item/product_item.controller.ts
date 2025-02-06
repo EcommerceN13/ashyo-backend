@@ -40,6 +40,7 @@ export class ProductItemController {
   @Protected(true)
   @Roles([UserRoles.admin])
   @Patch(':id')
+  @ApiConsumes("multipart/form-data")
   update(@Param('id') id: number, @Body() updateProductItemDto: UpdateProductItemDto) {
     return this.productItemService.update(+id, updateProductItemDto);
   }

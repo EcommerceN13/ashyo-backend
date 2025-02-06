@@ -1,4 +1,4 @@
-import { appConfig, databaseConfig } from '@config';
+import { appConfig, databaseConfig, jwtConfig } from '@config';
 import { CheckAuthGuard, CheckRoleGuard } from '@guards';
 import { ModelCtor } from 'sequelize-typescript';
 import {
@@ -56,7 +56,7 @@ import { APP_GUARD } from '@nestjs/core';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [appConfig, databaseConfig],
+      load: [appConfig, databaseConfig, jwtConfig],
     }),
     ServeStaticModule.forRoot({
       serveRoot: '/uploads',

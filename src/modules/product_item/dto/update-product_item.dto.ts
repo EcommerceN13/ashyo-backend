@@ -20,6 +20,8 @@ export class UpdateProductItemDto extends PartialType(CreateProductItemDto) {
   @ApiPropertyOptional({
     description: 'Mahsulot tasviriga havola (ixtiyoriy)',
     example: 'https://example.com/images/new-product.jpg',
+    format: 'binary',
+    required: false,
     type: String,
   })
   @IsOptional()
@@ -53,9 +55,12 @@ export class UpdateProductItemDto extends PartialType(CreateProductItemDto) {
       example: true,
       type: Boolean,
     })
-    @IsNotEmpty()
+    @IsOptional()
+    @Transform(({ value }) => {
+      if (value === 'true') return true;
+      if (value === 'false') return false;
+      return value;
+    })
     @IsBoolean()
     is_liked: boolean;
-
-    
 }

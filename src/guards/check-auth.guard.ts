@@ -64,7 +64,7 @@ export class CheckAuthGuard implements CanActivate {
 
     try {
       this.jwtService.verify(token, {
-        secret: this.config.get<string>('access.secret'),
+        secret: process.env.JWT_ACCESS_SECRET,
       });
     } catch (error) {
       if (error instanceof TokenExpiredError) {

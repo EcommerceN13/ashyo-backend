@@ -140,14 +140,14 @@ import { APP_GUARD } from '@nestjs/core';
   ],
   controllers: [],
    providers: [
-     {
-       useClass: CheckAuthGuard,
-       provide: APP_GUARD,
-     },
-     {
-       useClass: CheckRoleGuard,
-       provide: APP_GUARD,
-     },
+    //  {
+    //    useClass: CheckAuthGuard,
+    //    provide: APP_GUARD,
+    //  },
+    //  {
+    //    useClass: CheckRoleGuard,
+    //    provide: APP_GUARD,
+    //  },
    ],
 })
 export class AppModule { }

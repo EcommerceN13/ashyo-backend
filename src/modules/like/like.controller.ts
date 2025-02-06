@@ -36,6 +36,14 @@ export class LikeController {
     return this.likeService.getLikedProducts(+userId);
   }
 
+  @Get('usersLike/:userId')
+  @Roles([UserRoles.user, UserRoles.admin])
+  @ApiOperation({ summary: 'Get liked products for a user' })
+  @ApiResponse({ status: 200, description: 'Returns an array of liked products.' })
+  async getLikedProductsIdsArray(@Param('userId') userId: string) {
+    return this.likeService.getLikedProductsIdsArray(+userId);
+  }
+
   @Protected(false)
   @Roles([UserRoles.admin, UserRoles.user])
   @Get('/:id')

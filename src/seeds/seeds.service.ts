@@ -25,6 +25,9 @@ export class SeedsService implements OnModuleInit {
         await this.seedProduct(); 
         await this.seedBanner();
         await this.seedProductItem();
+        await this.seedVariation();
+        await this.seedVariationOption();
+        await this.seedProductConfiguration();
     }
     
 

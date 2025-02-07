@@ -368,14 +368,14 @@ export class SeedsService implements OnModuleInit {
             const variationOptions = [
                 { value: "15 Kg", variation_id: 1 },
                 { value: "8 GB", variation_id: 2 },
-                { value: "1 TB", variation_id: 2 },
-                { value: "13.3-inch", variation_id: 2 },
-                { value: "42🏳‍🌈", variation_id: 3 },
-                { value: "180000", variation_id: 4 },
-                { value: "12", variation_id: 5 },
-                { value: "16 GB", variation_id: 6 },
-                { value: "256", variation_id: 6 },
-                { value: "5.9-inch", variation_id: 6 },
+                { value: "1 TB", variation_id: 3 },
+                { value: "13.3-inch", variation_id: 4 },
+                { value: "42🏳‍🌈", variation_id: 1 },
+                { value: "180000", variation_id: 7 },
+                { value: "12", variation_id:  6},
+                { value: "16 GB", variation_id: 8 },
+                { value: "256", variation_id: 9},
+                { value: "5.9-inch", variation_id: 10 },
             ]
 
             await this.variationOptionModel.bulkCreate(variationOptions);

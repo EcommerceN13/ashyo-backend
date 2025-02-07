@@ -1,4 +1,4 @@
-import { appConfig, databaseConfig } from '@config';
+import { appConfig, databaseConfig, jwtConfig } from '@config';
 import { CheckAuthGuard, CheckRoleGuard } from '@guards';
 import { ModelCtor } from 'sequelize-typescript';
 import {
@@ -56,7 +56,7 @@ import { APP_GUARD } from '@nestjs/core';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [appConfig, databaseConfig],
+      load: [appConfig, databaseConfig, jwtConfig],
     }),
     ServeStaticModule.forRoot({
       serveRoot: '/uploads',
@@ -85,7 +85,6 @@ import { APP_GUARD } from '@nestjs/core';
               User,
               Like,
               Comment,
-              Cart,
               CartItem,
               Order,
               OrderItems,
@@ -102,7 +101,7 @@ import { APP_GUARD } from '@nestjs/core';
               Address,
               Color
             ] as ModelCtor[],
-            // sync: { force: true },
+            //sync: { force: true },
             synchronize: true,
             logging: console.log,
             autoLoadModels: true,
@@ -122,7 +121,6 @@ import { APP_GUARD } from '@nestjs/core';
     FileModule,
     LikeModule,
     CommentModule,
-    CartModule,
     CartItemModule,
     OrderModule,
     OrderItemsModule,
@@ -141,15 +139,15 @@ import { APP_GUARD } from '@nestjs/core';
     TelegramModule,
   ],
   controllers: [],
-  // providers: [
-  //   {
-  //     useClass: CheckAuthGuard,
-  //     provide: APP_GUARD,
-  //   },
-  //   {
-  //     useClass: CheckRoleGuard,
-  //     provide: APP_GUARD,
-  //   },
-  // ],
+   providers: [
+    //  {
+    //    useClass: CheckAuthGuard,
+    //    provide: APP_GUARD,
+    //  },
+    //  {
+    //    useClass: CheckRoleGuard,
+    //    provide: APP_GUARD,
+    //  },
+   ],
 })
 export class AppModule { }

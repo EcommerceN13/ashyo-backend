@@ -1,11 +1,13 @@
 import {
   IsBoolean,
   IsNotEmpty,
+  IsNumber,
   IsNumberString,
   IsOptional,
   IsString,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { Transform } from 'class-transformer';
 
 export class CreateProductItemDto {
   @ApiProperty({
@@ -54,6 +56,11 @@ export class CreateProductItemDto {
     type: Boolean,
   })
   @IsNotEmpty()
+  @Transform(({ value }) => {
+    if (value === 'true') return true;
+    if (value === 'false') return false;
+    return value;
+  })
   @IsBoolean()
   is_liked: boolean;
 }

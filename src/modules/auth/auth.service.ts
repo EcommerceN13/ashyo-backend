@@ -20,14 +20,14 @@ export class AuthService {
     return crypto.randomInt(100000, 999999).toString();
   }
 
-  private generateTokens(userId: number, email: string) {
+  private generateTokens(userId: number, email: string, role: string) {
     return {
       accessToken: this.jwtService.sign(
-        { userId, email },
+        { userId, email, role },
         { expiresIn: process.env.JWT_ACCESS_EXPIRES_IN || '24h', secret: process.env.JWT_ACCESS_SECRET },
       ),
       refreshToken: this.jwtService.sign(
-        { userId, email },
+        { userId, email, role },
         { expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d', secret: process.env.JWT_REFRESH_SECRET },
       ),
     };
@@ -49,7 +49,7 @@ export class AuthService {
       password: hashedPassword,
     });
 
-    const tokens = this.generateTokens(user.id, user.email);
+    const tokens = this.generateTokens(user.id, user.email, user.role);
 
     return {
       ...tokens,
@@ -111,7 +111,7 @@ export class AuthService {
 
     delete global.otpStore[email];
 
-    const tokens = this.generateTokens(user.id, user.email);
+    const tokens = this.generateTokens(user.id, user.email, user.role);
     return {
       ...tokens,
       user: {
@@ -138,7 +138,7 @@ export class AuthService {
         throw new HttpException("Email yoki parol noto'g'ri", HttpStatus.UNAUTHORIZED);
     }
 
-    const tokens = this.generateTokens(user.id, user.email);
+    const tokens = this.generateTokens(user.id, user.email, user.role);
     return {
         ...tokens,
         user: {

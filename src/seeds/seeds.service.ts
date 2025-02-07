@@ -147,6 +147,19 @@ export class SeedsService implements OnModuleInit {
                     is_liked: false
                 },
                 {
+                    name: "Play Station 5",
+                    category_id: 4,
+                    description: "Sony Play Station 5 osez kayp qib o'ynesiz.",
+                    nasiya: "12 oy",
+                    summary: "Siz uchun 2 ta pult bonus",
+                    price: 599,
+                    rating: 4,
+                    is_aksiya: true,
+                    brand_id: 5,
+                    image: "/ps5.png",
+                    is_liked: false
+                },
+                {
                     name: "Dell XPS 15 Laptop",
                     category_id: 3,
                     description: "Dell XPS 15 kuchli ishlash va mukammal ekran bilan eng yaxshi tanlov.",
@@ -353,16 +366,16 @@ export class SeedsService implements OnModuleInit {
 
         if(variationOptionCount == 0) {
             const variationOptions = [
-                { name: "15 Kg", variation_id: 1 },
-                { name: "8 GB", variation_id: 2 },
-                { name: "1 TB", variation_id: 2 },
-                { name: "13.3-inch", variation_id: 2 },
-                { name: "42🏳‍🌈", variation_id: 3 },
-                { name: "180000", variation_id: 4 },
-                { name: "12", variation_id: 5 },
-                { name: "16 GB", variation_id: 6 },
-                { name: "256", variation_id: 6 },
-                { name: "5.9-inch", variation_id: 6 },
+                { value: "15 Kg", variation_id: 1 },
+                { value: "8 GB", variation_id: 2 },
+                { value: "1 TB", variation_id: 2 },
+                { value: "13.3-inch", variation_id: 2 },
+                { value: "42🏳‍🌈", variation_id: 3 },
+                { value: "180000", variation_id: 4 },
+                { value: "12", variation_id: 5 },
+                { value: "16 GB", variation_id: 6 },
+                { value: "256", variation_id: 6 },
+                { value: "5.9-inch", variation_id: 6 },
             ]
 
             await this.variationOptionModel.bulkCreate(variationOptions);
@@ -374,15 +387,15 @@ export class SeedsService implements OnModuleInit {
 
         if(productConfigurationCount == 0) {
             const productConfigurations = [
-                { produc_item_id: 3, variation_option_id: 2 },
-                { produc_item_id: 3, variation_option_id: 3 },
-                { produc_item_id: 3, variation_option_id: 4 },
+                { product_item_id: 3, variation_option_id: 2 },
+                { product_item_id: 3, variation_option_id: 3 },
+                { product_item_id: 3, variation_option_id: 4 },
                 { product_item_id: 1, variation_option_id: 8 },
                 { product_item_id: 1, variation_option_id: 9 },
                 { product_item_id: 1, variation_option_id: 10 },
                 { product_item_id: 1, variation_option_id: 8 },
                 { product_item_id: 2, variation_option_id: 9 },
-                { product_item_id: 2, variation_option_id: 20 },
+                { product_item_id: 2, variation_option_id: 10 },
             ]
 
             await this.productConfigurationModel.bulkCreate(productConfigurations);

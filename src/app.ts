@@ -101,7 +101,7 @@ import { APP_GUARD } from '@nestjs/core';
               Address,
               Color
             ] as ModelCtor[],
-            //sync: { force: true },
+            sync: { force: true },
             synchronize: true,
             logging: console.log,
             autoLoadModels: true,

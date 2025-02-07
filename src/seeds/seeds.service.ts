@@ -1,4 +1,4 @@
-import { Banner, Brand, Category, Color, Product, ProductItem, User, UserRoles } from "@modules";
+import { Banner, Brand, Category, Color, Product, ProductConfiguration, ProductItem, User, UserRoles, Variation, VariationOption } from "@modules";
 import { Injectable, OnModuleInit } from "@nestjs/common";
 import { InjectModel } from "@nestjs/sequelize";
 import * as bcrypt from 'bcrypt';
@@ -11,7 +11,10 @@ export class SeedsService implements OnModuleInit {
         @InjectModel(Brand) private brandModel: typeof Brand,
         @InjectModel(Banner) private bannerModel: typeof Banner,
         @InjectModel(ProductItem) private productItemModel: typeof ProductItem,
-        @InjectModel(Color) private colorModel: typeof Color
+        @InjectModel(Color) private colorModel: typeof Color,
+        @InjectModel(Variation) private variationModel: typeof Variation,
+        @InjectModel(VariationOption) private variationOptionModel: typeof VariationOption,
+        @InjectModel(ProductConfiguration) private productConfigurationModel: typeof ProductConfiguration
     ) { }
 
     async onModuleInit() {
@@ -19,11 +22,9 @@ export class SeedsService implements OnModuleInit {
         await this.seedCategory();
         await this.seedBrand();
         await this.seedColor();
-        
-        await this.seedProduct(); // Ensure this runs first
-    
+        await this.seedProduct(); 
         await this.seedBanner();
-        await this.seedProductItem(); // Run after products exist
+        await this.seedProductItem();
     }
     
 
@@ -296,7 +297,7 @@ export class SeedsService implements OnModuleInit {
                 { price: 5999999, image: "ipad12.png", product_id: 7, color_id: 2 },
                 { price: 6499999, image: "boseque.png", product_id: 8, color_id: 3 },
                 { price: 6999999, image: "logitech.png", product_id: 9, color_id: 4 },
-                { price: 7499999, image: "canon.png", product_id: 9, color_id: 5 },
+                { price: 7499999, image: "canon.png", product_id: 10, color_id: 5 },
             ];
     
             await this.productItemModel.bulkCreate(productItems);
@@ -317,6 +318,72 @@ export class SeedsService implements OnModuleInit {
             ];
 
             await this.colorModel.bulkCreate(colors);
+        }
+    }
+
+    async seedVariation(): Promise<void> {
+        const variationCount = await this.variationModel.count();
+
+        if(variationCount == 0) {
+            const variations = [
+                { name: "Hajmi",category_id: 1 },
+                // Noutbuklar
+                { name: "RAM", category_id: 2 },
+                { name: "Hotira", category_id: 2 },
+                { name: "Ekran hajmi", category_id: 2 },
+                // Televizorlar
+                { name: "Ekran hajmi", category_id: 3 },
+                { name: "Umumiy og'irlik", category_id: 4 },
+                { name: "BTU", category_id: 5 },
+                // Smartfonlar
+                { name: "RAM", category_id: 6 },
+                { name: "Hotira", category_id: 6 },
+                { name: "Ekran hajmi", category_id: 6 },
+            ]
+
+            await this.variationModel.bulkCreate(variations);
+        }
+    }
+
+    async seedVariationOption(): Promise<void> {
+        const variationOptionCount = await this.variationOptionModel.count();
+
+        if(variationOptionCount == 0) {
+            const variationOptions = [
+                { name: "15 Kg", variation_id: 1 },
+                { name: "8 GB", variation_id: 2 },
+                { name: "1 TB", variation_id: 2 },
+                { name: "13.3-inch", variation_id: 2 },
+                { name: "42🏳‍🌈", variation_id: 3 },
+                { name: "180000", variation_id: 4 },
+                { name: "12", variation_id: 5 },
+                { name: "16 GB", variation_id: 6 },
+                { name: "256", variation_id: 6 },
+                { name: "5.9-inch", variation_id: 6 },
+            ]
+
+            await this.variationOptionModel.bulkCreate(variationOptions);
+        }
+    }
+
+    async seedProductConfiguration(): Promise<void> {
+        const productConfigurationCount = await this.productConfigurationModel.count();
+
+        if(productConfigurationCount == 0) {
+            const productConfigurations = [
+                { produc_item_id: 3, variation_option_id: 2 },
+                { produc_item_id: 3, variation_option_id: 3 },
+                { produc_item_id: 3, variation_option_id: 4 },
+                { product_item_id: 1, variation_option_id: 8 },
+                { product_item_id: 1, variation_option_id: 9 },
+                { product_item_id: 1, variation_option_id: 10 },
+                { product_item_id: 1, variation_option_id: 8 },
+                { product_item_id: 2, variation_option_id: 9 },
+                { product_item_id: 2, variation_option_id: 20 },
+            ]
+
+            await this.productConfigurationModel.bulkCreate(productConfigurations);
+
         }
     }
 

@@ -393,7 +393,7 @@ export class SeedsService implements OnModuleInit {
                 { product_item_id: 1, variation_option_id: 8 },
                 { product_item_id: 1, variation_option_id: 9 },
                 { product_item_id: 1, variation_option_id: 10 },
-                { product_item_id: 1, variation_option_id: 8 },
+                { product_item_id: 2, variation_option_id: 8 },
                 { product_item_id: 2, variation_option_id: 9 },
                 { product_item_id: 2, variation_option_id: 10 },
             ]

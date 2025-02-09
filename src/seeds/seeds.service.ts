@@ -304,16 +304,16 @@ export class SeedsService implements OnModuleInit {
     
         if (productItemCount == 0) {
             const productItems = [
-                { price: 2999999, image: "xiamo12lite.png", product_id: 1, color_id: 1 },
-                { price: 3499999, image: "s25ultra.png", product_id: 2, color_id: 2 },
-                { price: 3999999, image: "macbookprom2.png", product_id: 3, color_id: 3 },
-                { price: 4499999, image: "airpodspro2.png", product_id: 4, color_id: 4 },
-                { price: 4999999, image: "ps5.png", product_id: 5, color_id: 5 },
-                { price: 5499999, image: "dellxps5.png", product_id: 6, color_id: 1 },
-                { price: 5999999, image: "ipad12.png", product_id: 7, color_id: 2 },
-                { price: 6499999, image: "boseque.png", product_id: 8, color_id: 3 },
-                { price: 6999999, image: "logitech.png", product_id: 9, color_id: 4 },
-                { price: 7499999, image: "canon.png", product_id: 10, color_id: 5 },
+                { price: 6999, image: "xiamo12lite.png", product_id: 1, color_id: 1 },
+                { price: 11999, image: "s25ultra.png", product_id: 2, color_id: 2 },
+                { price: 19999, image: "macbookprom2.png", product_id: 3, color_id: 3 },
+                { price: 2499, image: "airpodspro2.png", product_id: 4, color_id: 4 },
+                { price: 599, image: "ps5.png", product_id: 5, color_id: 5 },
+                { price: 17999, image: "dellxps5.png", product_id: 6, color_id: 1 },
+                { price: 13999, image: "ipad12.png", product_id: 7, color_id: 2 },
+                { price: 29999, image: "boseque.png", product_id: 8, color_id: 3 },
+                { price: 999, image: "logitech.png", product_id: 9, color_id: 4 },
+                { price: 2399, image: "canon.png", product_id: 10, color_id: 5 },
             ];
     
             await this.productItemModel.bulkCreate(productItems);
@@ -370,7 +370,7 @@ export class SeedsService implements OnModuleInit {
                 { value: "8 GB", variation_id: 2 },
                 { value: "1 TB", variation_id: 3 },
                 { value: "13.3-inch", variation_id: 4 },
-                { value: "42🏳‍🌈", variation_id: 1 },
+                { value: "42", variation_id: 1 },
                 { value: "180000", variation_id: 7 },
                 { value: "12", variation_id:  6},
                 { value: "16 GB", variation_id: 8 },
